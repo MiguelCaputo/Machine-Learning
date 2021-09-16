@@ -1,0 +1,12 @@
+- If you run again the code might have different results due to the library not providing a way for us to change the random seed.
+- My code assumes that the Data Set is  in the same main folder as the code
+- Necessary Packages:
+	- CSV
+	- DataFrames
+	- Clustering
+	- GaussianMixtures
+	- Distances
+	- Statistics
+	- ScikitLearn
+	- Plots (only for my interpretation, is not needed)
+- All of the necessary Packages can be downloaded inside the program, just uncomment the necessary packages at the beginning of the code.

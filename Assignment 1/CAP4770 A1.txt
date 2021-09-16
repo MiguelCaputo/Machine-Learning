@@ -1,0 +1,44 @@
+1. [20pt] For each genre (name of, not id), find the total number of tracks in that genre
+
+SELECT genres.Name, COUNT(trackid) as totTracks
+FROM genres, tracks
+WHERE genres.GenreId = tracks.genreid
+GROUP By genres.GenreId
+
+2. [20pt] For each genre (name of, not id), find the total number of albums (Hint: use COUNT(DISTINCT ...) to avoid counting an album multiple times)
+
+SELECT genres.Name, COUNT(DISTINCT albums.AlbumId)
+FROM genres, tracks, albums
+WHERE genres.GenreId = tracks.GenreId AND tracks.AlbumId = albums.AlbumId 
+GROUP By genres.genreid
+
+3. [20pt] Find the total revenue from customers per state (Hint: customer table has a STATE field)
+
+SELECT state, SUM(total) as total
+FROM invoices, customers
+WHERE invoices.CustomerId = customers.CustomerId
+GROUP BY state
+
+4. [20pt] Find the total revenue from the top 10, most spendy, customers. (Hint: use LIMIT in a sub-query)
+
+SELECT SUM(totalR) as total  
+From (
+  SELECT customerid, SUM(total) AS totalR
+  FROM invoices
+  GROUP BY customerid
+  ORDER By totalR DESC
+  LIMIT 10
+)
+
+5. [20pt] Find the number of tracks not part of any playlist. (Hint: use NOT EXISTS, NOT IN or DIFFERENCE)
+
+SELECT COUNT(trackid)
+FROM tracks
+WHERE trackid NOT IN (SELECT trackid From playlist_track)
+
+6. [20pt, Bonus] Get a sample of size 30 WITH REPLACEMENT from genres. Note that in a sample with replacement, t
+he items are allowed to repeat. In particular, each item in the sample is selected independently from all items.
+
+SELECT name
+FROM genres, (SELECT 1 + abs(random() % 25) as val From tracks LIMIT 30)
+WHERE genreid = val

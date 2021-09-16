@@ -1,0 +1,32 @@
+~ Required Packages: All packages can be download as Pkg.add("packageName")
+    - prepare.jl:
+        - ZipFile
+        - SQLite
+        - CSV
+    - plot.jl: 
+        - SQLite
+        - Gadfly
+        - DataFrames
+~ Functionality:
+    - prepare.jl:
+        - Takes two arguments, a zip file name, and a database name.
+        - The program check if:
+            - The correct number of arguments is given.
+            - The zip file exists in the same folder.
+        - The program takes about 30 seconds to finish on my laptop with the use of prepared statements.
+        - Assumptions:
+            - The zip file already exists in the folder.
+            - The database does not exist or is empty.
+    - plot.jl:
+        - Takes three arguments, a database name, a name, and sex.
+        - The program check if:
+            - The correct number of arguments is given.
+            - The database exists in the same folder.
+            - The given name-sex combination returns any information.
+        - The program takes about 1 minute to finish on my laptop.
+        - The program output is an SVG file containing two plots, one with the number of names and one for a relative frequency.
+        - The SVG file is called plot.svg and it can be open with a web browser like chrome or any other extensions.
+        - Assumptions:
+            - The database already exists in the folder and is not empty.
+            - The name and sex passed as arguments are not case sensitive.
+
